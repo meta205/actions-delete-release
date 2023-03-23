@@ -9306,7 +9306,6 @@ const core = __importStar(__nccwpck_require__(2810));
 const rest_1 = __nccwpck_require__(3676);
 (() => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        console.log(`>> process.env.GITHUB_REPOSITORY: ${process.env.GITHUB_REPOSITORY}`);
         const octokit = new rest_1.Octokit({
             auth: process.env.GITHUB_TOKEN
         });

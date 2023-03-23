@@ -3,7 +3,6 @@ import { Octokit } from '@octokit/rest';
 
 (async (): Promise<void> => {
   try {
-    console.log(`>> process.env.GITHUB_REPOSITORY: ${process.env.GITHUB_REPOSITORY}`);
     const octokit = new Octokit({
       auth: process.env.GITHUB_TOKEN
     });
