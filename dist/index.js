@@ -9309,9 +9309,14 @@ const rest_1 = __nccwpck_require__(3676);
         const octokit = new rest_1.Octokit({
             auth: process.env.GITHUB_TOKEN
         });
-        const owner = core.getInput('owner');
-        const repo = core.getInput('repo');
+        let owner = core.getInput('owner');
+        let repo = core.getInput('repo');
         const releaseName = core.getInput('release-name');
+        if (!owner || !repo) {
+            const repoInfo = process.env.GITHUB_REPOSITORY.split('/');
+            owner = repoInfo[0];
+            repo = repoInfo[1];
+        }
         const releases = yield octokit.repos.listReleases({
             owner,
             repo
