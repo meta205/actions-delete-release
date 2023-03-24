@@ -7,9 +7,15 @@ import { Octokit } from '@octokit/rest';
       auth: process.env.GITHUB_TOKEN
     });
 
-    const owner: string = core.getInput('owner');
-    const repo: string = core.getInput('repo');
+    let owner: string = core.getInput('owner');
+    let repo: string = core.getInput('repo');
     const releaseName: string = core.getInput('release-name');
+
+    if (!owner || !repo) {
+      const repoInfo: string[] = process.env.GITHUB_REPOSITORY!.split('/');
+      owner = repoInfo[0];
+      repo = repoInfo[1];
+    }
 
     const releases = await octokit.repos.listReleases({
       owner,

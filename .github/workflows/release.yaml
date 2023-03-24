@@ -22,3 +22,4 @@ jobs:
         with:
           tag_name: ${{ steps.release-info.outputs.tag-name }}
           release_name: ${{ steps.release-info.outputs.release-name }}
+          body: ${{ steps.release-info.outputs.release-name }} Release

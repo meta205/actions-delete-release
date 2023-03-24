@@ -8,10 +8,10 @@ branding:
 inputs:
   owner:
     description: 'The owner of github'
-    required: true
+    required: false
   repo:
     description: 'The repo of github'
-    required: true
+    required: false
   release-name:
     description: 'The release name of github'
     required: true
