@@ -16,7 +16,7 @@ import { Octokit } from '@octokit/rest';
       repo
     });
 
-    const targetReleases = releases.data.filter(release => release.name == releaseName);
+    const targetReleases = releases.data.filter(release => release.name === releaseName);
 
     for (const targetRelease of targetReleases) {
       console.log(`Removing release "${targetRelease.name}" and tag "${targetRelease.tag_name}"...`);
