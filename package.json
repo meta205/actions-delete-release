@@ -1,7 +1,7 @@
 {
-  "name": "actions-yajsw",
+  "name": "actions-delete-release",
   "version": "1.0.0",
-  "description": "GitHub Action for yajsw",
+  "description": "GitHub Action for deleting a GitHub Release",
   "main": "index.js",
   "scripts": {
     "build": "ncc build ./src/index.ts -o dist --license licenses.txt",
