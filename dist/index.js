@@ -9309,14 +9309,26 @@ const rest_1 = __nccwpck_require__(3676);
         const octokit = new rest_1.Octokit({
             auth: process.env.GITHUB_TOKEN
         });
-        const owner = core.getInput('owner');
-        const repo = core.getInput('repo');
-        const releaseName = core.getInput('release-name');
+        let owner = core.getInput('owner');
+        let repo = core.getInput('repo');
+        let releaseName = core.getInput('release-name');
+        let tagName = core.getInput('tag-name');
+        if (!owner || !repo) {
+            const repoInfo = process.env.GITHUB_REPOSITORY.split('/');
+            owner = repoInfo[0];
+            repo = repoInfo[1];
+        }
         const releases = yield octokit.repos.listReleases({
             owner,
             repo
         });
-        const targetReleases = releases.data.filter(release => release.name === releaseName);
+        let targetReleases = [];
+        if (releaseName) {
+            targetReleases = releases.data.filter(release => release.name === releaseName);
+        }
+        else if (tagName) {
+            targetReleases = releases.data.filter(release => release.tag_name === tagName);
+        }
         for (const targetRelease of targetReleases) {
             console.log(`Removing release "${targetRelease.name}" and tag "${targetRelease.tag_name}"...`);
             yield octokit.repos.deleteRelease({

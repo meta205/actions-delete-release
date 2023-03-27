@@ -7,16 +7,28 @@ import { Octokit } from '@octokit/rest';
       auth: process.env.GITHUB_TOKEN
     });
 
-    const owner: string = core.getInput('owner');
-    const repo: string = core.getInput('repo');
-    const releaseName: string = core.getInput('release-name');
+    let owner: string = core.getInput('owner');
+    let repo: string = core.getInput('repo');
+    let releaseName: string = core.getInput('release-name');
+    let tagName: string = core.getInput('tag-name');
+
+    if (!owner || !repo) {
+      const repoInfo: string[] = process.env.GITHUB_REPOSITORY!.split('/');
+      owner = repoInfo[0];
+      repo = repoInfo[1];
+    }
 
     const releases = await octokit.repos.listReleases({
       owner,
       repo
     });
 
-    const targetReleases = releases.data.filter(release => release.name === releaseName);
+    let targetReleases: any[] = [];
+    if (releaseName) {
+      targetReleases = releases.data.filter(release => release.name === releaseName);
+    } else if (tagName) {
+      targetReleases = releases.data.filter(release => release.tag_name === tagName);
+    }
 
     for (const targetRelease of targetReleases) {
       console.log(`Removing release "${targetRelease.name}" and tag "${targetRelease.tag_name}"...`);
