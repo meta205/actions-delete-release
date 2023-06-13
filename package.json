@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/meta205/actions-yajsw.git"
+    "url": "git+https://github.com/meta205/actions-delete-release.git"
   },
   "keywords": [
     "yajsw"
@@ -17,7 +17,7 @@
   "author": "Kyongho Lee",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/meta205/actions-yajsw/issues"
+    "url": "https://github.com/meta205/actions-delete-release/issues"
   },
   "dependencies": {
     "@actions/core": "^1.10.0",
