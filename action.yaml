@@ -12,10 +12,10 @@ inputs:
   repo:
     description: 'The repo of github'
     required: false
-  release-name:
+  release_name:
     description: 'The release name of github'
     required: false
-  tag-name:
+  tag_name:
     description: 'The tag name of github'
     required: false
 runs:
