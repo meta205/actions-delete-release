@@ -31,7 +31,7 @@ import { Octokit } from '@octokit/rest';
     }
 
     for (const targetRelease of targetReleases) {
-      console.log(`Removing release "${targetRelease.name}" and tag "${targetRelease.tag_name}"...`);
+      console.log(`Deleting release "${targetRelease.name}" and tag "${targetRelease.tag_name}"...`);
       await octokit.repos.deleteRelease({
         owner,
         repo,
