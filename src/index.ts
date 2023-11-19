@@ -1,5 +1,5 @@
 import * as core from '@actions/core';
-import { Octokit } from '@octokit/rest';
+import {Octokit} from '@octokit/rest';
 
 (async (): Promise<void> => {
   try {
